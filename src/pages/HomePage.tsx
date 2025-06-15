@@ -1,8 +1,9 @@
 import React from 'react'
+import EmployeesTable from '../components/EmployeesTable'
 
 const HomePage = () => {
   return (
-    <div>HomePage</div>
+    <EmployeesTable></EmployeesTable>
   )
 }
 
