@@ -42,6 +42,7 @@ const EmployeesTable = () => {
                     <Table.ColumnHeader>Birthday</Table.ColumnHeader>
                   </Table.Row>
                 </Table.Header>
+
                 <Table.Body>
                   {employees?.map((empl) => (
                     <Table.Row key={empl.id}>

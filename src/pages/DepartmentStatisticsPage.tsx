@@ -5,6 +5,7 @@ import apiClient from "../services/ApiClientJsonServer";
 import { Box } from "@chakra-ui/react";
 import _ from "lodash";
 import DepartmentStatisticsTable from "../components/DepartmentStatisticsTable";
+import getAge from "../utils/getAges";
 
 
 const DepartmentsStatisticsPage = () => {
@@ -14,32 +15,29 @@ const DepartmentsStatisticsPage = () => {
     staleTime: 3600_000,
   });
 
-  const currentYear = new Date().getFullYear();
 
   const grouped = _.groupBy(employees, "department");
 
-  const stats: DepartmentStatistics[] = Object.entries(grouped).map(
-    ([department, empl]) => {
-      const employeeCount = empl.length;
-      const averageSalary = Math.round(_.meanBy(empl, (e) => e.salary));
-      const averageAge = Math.round(
-        _.meanBy(empl, (e) => currentYear - new Date(e.birthDate).getFullYear())
-      );
+  const stats: DepartmentStatistics[] = _.map(grouped, (empl, department) => {
+    const employeeCount = empl.length;
+    const averageSalary = Math.round(_.meanBy(empl, (e) => e.salary));
+    const averageAge = Math.round(_.meanBy(empl, (e) => getAge(e.birthDate)));
 
-      return {
-        department,
-        employeeCount,
-        averageSalary,
-        averageAge,
-      };
+    return {
+      department,
+      employeeCount,
+      averageSalary,
+      averageAge,
+    };
 
-    }
+  }
 
   );
 
   return (
     <Box>
-      <DepartmentStatisticsTable data={stats}></DepartmentStatisticsTable>
+      <DepartmentStatisticsTable data={stats}>
+      </DepartmentStatisticsTable>
     </Box>
   );
 };
