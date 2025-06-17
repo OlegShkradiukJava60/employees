@@ -13,3 +13,10 @@ export interface SearchObject {
     minAge?: number;
     maxAge?: number;
 }
+
+export interface DepartmentStatistics {
+  department: string;
+  employeeCount: number;
+  averageSalary: number;
+  averageAge: number;
+}

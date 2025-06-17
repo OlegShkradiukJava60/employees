@@ -9,22 +9,13 @@ const duration = 0.7;
 const StatisticsSelector: FC = () => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const location = useLocation();
-  const isActive = location.pathname.startsWith('/statistics');
+  const isActive = location.pathname.startsWith("/statistics")
   return (
-
     <>
 
       <Menu.Root onExitComplete={() => setIsOpen(false)}>
         <Menu.Trigger asChild>
-          <Button
-          zIndex={100}
-            fontWeight={isActive ? "bold" : "normal"}
-            variant="outline"
-            size="sm"
-            marginTop={"2vh"}
-            onClick={() => setIsOpen(!isOpen)}
-            borderWidth={0}>
-
+          <Button fontWeight={isActive ? "bold" : "normal"} variant="outline" size="sm" marginTop="1vh" onClick={() => setIsOpen(!isOpen)} borderWidth={0}>
             Statistics
             {isOpen ? <MotionComponent duration={duration}>
               <FaChevronUp></FaChevronUp>
@@ -35,18 +26,15 @@ const StatisticsSelector: FC = () => {
           <Menu.Positioner>
             <MotionComponent duration={duration}>
               <Menu.Content>
-                {<Menu.Item value="age">
+                <Menu.Item value="age">
                   <NavLink to="/statistics/age">Age Statistics</NavLink>
-                </Menu.Item>}
-
-                {<Menu.Item value="Salary">
+                </Menu.Item>
+                <Menu.Item value="age">
                   <NavLink to="/statistics/salary">Salary Statistics</NavLink>
-                </Menu.Item>}
-
-                {<Menu.Item value="department">
+                </Menu.Item>
+                <Menu.Item value="age">
                   <NavLink to="/statistics/department">Department Statistics</NavLink>
-                </Menu.Item>}
-
+                </Menu.Item>
               </Menu.Content>
             </MotionComponent>
           </Menu.Positioner>

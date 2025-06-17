@@ -17,12 +17,7 @@ const EmployeesTable = () => {
   return (
     <>
       {error ?
-        <Text
-          color={"red"}
-          fontSize={"2xl"}
-        >
-          {error.message}
-        </Text>
+        <Text color={"red"} fontSize={"2xl"}>{error.message}</Text>
         :
         <>
           {isLoading && <Spinner />}
@@ -39,7 +34,7 @@ const EmployeesTable = () => {
             >
               <Table.Root size="sm" stickyHeader>
                 <Table.Header>
-                  <Table.Row bg="bg.subtle" zIndex={-1}>
+                  <Table.Row bg="bg.subtle" zIndex="-1">
                     <Table.ColumnHeader></Table.ColumnHeader>
                     <Table.ColumnHeader>Full Name</Table.ColumnHeader>
                     <Table.ColumnHeader>Department</Table.ColumnHeader>
