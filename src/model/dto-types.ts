@@ -1,5 +1,5 @@
 export interface Employee {
-    id: string;
+    id?: string;
     fullName: string;
     avatar: string;
     department: string;
@@ -12,11 +12,4 @@ export interface SearchObject {
     maxSalary?: number;
     minAge?: number;
     maxAge?: number;
-}
-
-export interface DepartmentStatistics {
-  department: string;
-  employeeCount: number;
-  averageSalary: number;
-  averageAge: number;
 }

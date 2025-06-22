@@ -1,8 +1,12 @@
-import React from 'react'
+import EmployeeForm from "../components/EmployeeForm"
+import useEmployeesMutation from "../hooks/useEmployeesMutation"
+import { Employee } from "../model/dto-types"
+import apiClient from "../services/ApiClientJsonServer"
 
 const AddEmployeePage = () => {
+  const mutationObj = useEmployeesMutation((empl) => apiClient.addEmployee(empl as Employee))
   return (
-    <div>AddEmployeePage</div>
+    <EmployeeForm submitter={(empl) => mutationObj.mutate(empl)}></EmployeeForm>
   )
 }
 

@@ -1,6 +1,7 @@
 import { createBrowserRouter } from "react-router-dom";
 import HomePage from "../pages/HomePage";
 import AddEmployeePage from "../pages/AddEmployeePage";
+import Statistics from "../pages/StatisticsSelector";
 import AgeStatisticsPage from "../pages/AgeStatisticsPage";
 import SalaryStatisticsPage from "../pages/SalaryStatisticsPage";
 import DepartmentStatisticsPage from "../pages/DepartmentStatisticsPage";

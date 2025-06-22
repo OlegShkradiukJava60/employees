@@ -1,0 +1,7 @@
+{
+    "departments": ["QA", "Development", "Audit", "Accounting","Management"],
+    "minSalary": 5000,
+    "maxSalary": 50000,
+    "minAge": 20,
+    "maxAge": 72
+}
