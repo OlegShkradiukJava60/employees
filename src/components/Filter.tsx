@@ -6,7 +6,7 @@ import AgeFilter from './AgeFilter'
 
 const Filters = () => {
   return (
-    <HStack>
+    <HStack justifyContent="space-around">
         <DepartmentSelector/>
         <SalaryFilter></SalaryFilter>
         <AgeFilter></AgeFilter>
