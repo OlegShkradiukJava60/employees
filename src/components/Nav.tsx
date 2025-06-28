@@ -2,13 +2,10 @@ import { HStack, Text } from '@chakra-ui/react'
 import { NavLink as RouterLink } from 'react-router-dom'
 import { ColorModeButton } from './ui/color-mode'
 import StatisticsSelector from '../pages/StatisticsSelector'
-import { UserData } from '../services/AuthClient'
+import { useAuthData } from '../state-management/store';
 
-interface NavProps {
-  userData: UserData | null
-}
-
-const Nav = ({ userData }: NavProps) => {
+const Nav = () => {
+  const userData = useAuthData();
   return (
     <HStack justifyContent="space-between" marginLeft="4vw">
       {/* Home - всегда виден */}
