@@ -1,6 +1,6 @@
 export function getAge(birthDate: string): number {
     return new Date().getFullYear()
-        - new Date(birthDate).getFullYear()
+      - new Date(birthDate).getFullYear()
 }
 export function getDateFromAge(age: number): string {
     const date = new Date();

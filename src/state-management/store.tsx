@@ -1,4 +1,5 @@
 import {create} from 'zustand'
+import { UserData } from '../services/AuthClient';
 interface EmployeeFilters {
     department: string | null;
     salaryFrom: number | null;
@@ -10,6 +11,11 @@ interface EmployeeFilters {
     setAgeFrom: (ageFrom: number | null) => void;
     setSalaryTo: (salaryTo: number | null) => void;
     setAgeTo: (ageTo: number | null) => void;
+}
+interface AuthData {
+    userData: UserData | null;
+    login: (userData: UserData) => void;
+    logout: () => void;
 }
 const useEmployeeFilters = create<EmployeeFilters>(set => ({
 department: null,
@@ -33,4 +39,13 @@ setDepartment: (department) => set({
     department
 })
 }));
+export const useAuthData = create<AuthData>(set => ({
+    userData: null,
+    login: (userData) => set({
+       userData
+    }),
+    logout: () => set({
+        userData: null
+    })
+}))
 export default useEmployeeFilters

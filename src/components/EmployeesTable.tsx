@@ -9,6 +9,8 @@ import useEmployeesMutation from "../hooks/useEmployeesMutation";
 import EditField from "./EditField";
 import useEmployeeFilters from "../state-management/store";
 import _ from 'lodash'
+import { useAuthData } from '../state-management/store';
+
 interface Props {
   deleteFn: MutationFunction,
   updateFn: MutationFunction
@@ -68,7 +70,7 @@ const EmployeesTable:FC<Props> = ({deleteFn, updateFn}) => {
                     <Table.ColumnHeader>Department</Table.ColumnHeader>
                     <Table.ColumnHeader hideBelow="sm">Salary</Table.ColumnHeader>
                     <Table.ColumnHeader hideBelow="md">Birthday</Table.ColumnHeader>
-                    <Table.ColumnHeader ></Table.ColumnHeader>
+                    {useAuthData && useAuthData.role==="ADMIN" && <Table.ColumnHeader ></Table.ColumnHeader>}
                   </Table.Row>
                 </Table.Header>
                 <Table.Body  zIndex="-100">

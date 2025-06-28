@@ -9,4 +9,5 @@ export default interface ApiClient {
     addEmployee(empl: Employee): Promise<Employee>;
     deleteEmployee(id: string): Promise<Employee>;
     updateEmployee(updater: Updater): Promise<Employee>;
+    setToken(token:string):void
 }

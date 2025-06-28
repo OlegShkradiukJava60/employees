@@ -2,14 +2,43 @@ import { HStack, Text } from '@chakra-ui/react'
 import { NavLink as RouterLink } from 'react-router-dom'
 import { ColorModeButton } from './ui/color-mode'
 import StatisticsSelector from '../pages/StatisticsSelector'
+import { UserData } from '../services/AuthClient'
 
-const Nav = () => {
+interface NavProps {
+  userData: UserData | null
+}
+
+const Nav = ({ userData }: NavProps) => {
   return (
-    <HStack justifyContent={"space-between"} marginLeft={"4vw"}>
-        <RouterLink to="/"> <Text>Home</Text></RouterLink>
-        <RouterLink to="/add"> <Text>Add Employee</Text></RouterLink>
-        <StatisticsSelector></StatisticsSelector>
-        <ColorModeButton></ColorModeButton>
+    <HStack justifyContent="space-between" marginLeft="4vw">
+      {/* Home - всегда виден */}
+      <RouterLink to="/">
+        <Text>Home</Text>
+      </RouterLink>
+
+      {/* Для неавторизованных */}
+      {!userData ? (
+        <RouterLink to="/login">
+          <Text>Login</Text>
+        </RouterLink>
+      ) : (
+        <>
+          {/* Для всех авторизованных */}
+          <RouterLink to="/logout">
+            <Text>Logout</Text>
+          </RouterLink>
+          <StatisticsSelector />
+
+          {/* Только для ADMIN */}
+          {userData.role === 'ADMIN' && (
+            <RouterLink to="/add">
+              <Text>Add Employee</Text>
+            </RouterLink>
+          )}
+        </>
+      )}
+
+      <ColorModeButton />
     </HStack>
   )
 }

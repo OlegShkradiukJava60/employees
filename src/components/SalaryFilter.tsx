@@ -6,7 +6,7 @@ import {
 import RangeFilter from "./RangeFilter";
 
 const SalaryFilter = () => {
-  return <RangeFilter title="salary" min={minSalary} max={maxSalary} />
+  return <RangeFilter title="salary" min={minSalary} max={maxSalary}/>
 };
 
 export default SalaryFilter;

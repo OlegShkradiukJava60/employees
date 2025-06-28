@@ -16,7 +16,7 @@ interface Props {
 }
 const EditField: FC<Props> = ({ submitter, field, oldValue }) => {
   const [editing, setEditing] = useState<boolean>(false);
-  const [value, setValue] = useState<string | number>(oldValue)
+  const [value, setValue] = useState<string|number>(oldValue)
   const { register, reset, handleSubmit } = useForm<Employee>({
     defaultValues: {
       department: field === "department" ? (oldValue as string) : undefined,
@@ -30,7 +30,7 @@ const EditField: FC<Props> = ({ submitter, field, oldValue }) => {
           as="form"
           onSubmit={handleSubmit((data) => {
             submitter(data);
-            setValue(data.department || data.salary)
+            setValue(data.department||data.salary)
             setEditing(false);
           })} onReset={() => reset()}
         >
