@@ -129,41 +129,6 @@ const EmployeesTable: FC<Props> = ({ deleteFn, updateFn }) => {
           </Table.ScrollArea>
 
 
-          {/* {(
-            <Pagination.Root
-              count={totalItems}
-              pageSize={pageSize}
-              page={page}
-              onPageChange={(e) => setPage(e.page)}
-            >
-              <ButtonGroup variant="ghost" size="sm">
-                <Pagination.PrevTrigger asChild>
-                  <IconButton aria-label="Previous page">
-                    <HiChevronLeft />
-                  </IconButton>
-                </Pagination.PrevTrigger>
-
-                <Pagination.Items
-                  render={(pageItem) => (
-                    <IconButton
-                      key={pageItem.value}
-                      variant={pageItem.value === page ? "outline" : "ghost"}
-                      aria-current={pageItem.value === page ? "page" : undefined}
-                    >
-                      {pageItem.value}
-                    </IconButton>
-                  )}
-                />
-
-                <Pagination.NextTrigger asChild>
-                  <IconButton aria-label="Next page">
-                    <HiChevronRight />
-                  </IconButton>
-                </Pagination.NextTrigger>
-              </ButtonGroup>
-            </Pagination.Root>
-          )} */}
-
         </Stack>
       </>
     </>
