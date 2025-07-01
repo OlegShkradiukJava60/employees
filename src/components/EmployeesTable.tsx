@@ -1,7 +1,7 @@
 import { MutationFunction, useQuery } from "@tanstack/react-query";
 import { Employee, SearchObject } from "../model/dto-types";
 import apiClient from "../services/ApiClientJsonServer";
-import { Avatar, Spinner, Stack, Table, Button } from "@chakra-ui/react";
+import { Avatar, Spinner, Stack, Table, Button, ButtonGroup, IconButton, Pagination } from "@chakra-ui/react";
 import { AxiosError } from "axios";
 import { useColorModeValue } from "../components/ui/color-mode";
 import { FC, useEffect } from "react";
@@ -11,6 +11,8 @@ import useEmployeeFilters, { useAuthData } from "../state-management/store";
 import _ from 'lodash'
 import { useEmployeesPaginationStore } from "../state-management/EmployeesPaginationStore";
 import employeesConfig from "../../config/employees-config.json";
+import { HiChevronLeft, HiChevronRight } from "react-icons/hi";
+import { EmployeesPaginationState } from '../state-management/EmployeesPaginationStore';
 
 interface Props {
   deleteFn: MutationFunction,
@@ -44,15 +46,15 @@ const EmployeesTable: FC<Props> = ({ deleteFn, updateFn }) => {
   });
   if (error) {
     throw error;
-  }
+  }                        
 
   const mutationDel = useEmployeesMutation(deleteFn);
   const mutationUpdate = useEmployeesMutation(updateFn);
   const bg = useColorModeValue("red.500", "red.200");
 
-
-  const { page, setCount } = useEmployeesPaginationStore();
+    const { page, setPage, setCount } = useEmployeesPaginationStore();
   const pageSize = employeesConfig.pageSize || 6;
+
 
   useEffect(() => {
     if (employees) {
@@ -60,9 +62,11 @@ const EmployeesTable: FC<Props> = ({ deleteFn, updateFn }) => {
     }
   }, [employees, setCount]);
 
-  const startIndex = (page - 1) * pageSize;
-  const paginatedEmployees = employees?.slice(startIndex, startIndex + pageSize);
 
+  const startRange = (page - 1) * pageSize;
+  const endRange = startRange + pageSize;
+  const paginatedEmployees = employees?.slice(startRange, endRange);
+  const totalItems = employees?.length || 0;
 
 
   return (
@@ -123,6 +127,41 @@ const EmployeesTable: FC<Props> = ({ deleteFn, updateFn }) => {
               </Table.Body>
             </Table.Root>
           </Table.ScrollArea>
+
+          {totalItems > pageSize && (
+            <Pagination.Root
+              count={totalItems}
+              pageSize={pageSize}
+              page={page}
+              onPageChange={(e) => setPage(e.page)}
+            >
+              <ButtonGroup variant="ghost" size="sm">
+                <Pagination.PrevTrigger asChild>
+                  <IconButton aria-label="Previous page">
+                    <HiChevronLeft />
+                  </IconButton>
+                </Pagination.PrevTrigger>
+
+                <Pagination.Items
+                  render={(pageItem) => (
+                    <IconButton
+                      key={pageItem.value}
+                      variant={pageItem.value === page ? "outline" : "ghost"}
+                      aria-current={pageItem.value === page ? "page" : undefined}
+                    >
+                      {pageItem.value}
+                    </IconButton>
+                  )}
+                />
+
+                <Pagination.NextTrigger asChild>
+                  <IconButton aria-label="Next page">
+                    <HiChevronRight />
+                  </IconButton>
+                </Pagination.NextTrigger>
+              </ButtonGroup>
+            </Pagination.Root>
+          )}
         </Stack>
       </>
     </>
