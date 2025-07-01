@@ -16,7 +16,7 @@ const HomePage = () => {
           <Filters></Filters>
           <EmployeesTable deleteFn={(id) => apiClient.deleteEmployee(id as string)}
             updateFn={(updater) => apiClient.updateEmployee(updater as Updater)}></EmployeesTable>
-          {/* <EmployeesPaginator></EmployeesPaginator> */}
+          <EmployeesPaginator></EmployeesPaginator>
         </Stack>
       }
     </>

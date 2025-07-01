@@ -129,7 +129,7 @@ const EmployeesTable: FC<Props> = ({ deleteFn, updateFn }) => {
           </Table.ScrollArea>
 
 
-          {totalItems > pageSize && (
+          {/* {(
             <Pagination.Root
               count={totalItems}
               pageSize={pageSize}
@@ -162,7 +162,7 @@ const EmployeesTable: FC<Props> = ({ deleteFn, updateFn }) => {
                 </Pagination.NextTrigger>
               </ButtonGroup>
             </Pagination.Root>
-          )}
+          )} */}
 
         </Stack>
       </>
