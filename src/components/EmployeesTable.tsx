@@ -7,9 +7,8 @@ import { useColorModeValue } from "../components/ui/color-mode";
 import { FC, useEffect } from "react";
 import useEmployeesMutation from "../hooks/useEmployeesMutation";
 import EditField from "./EditField";
-import useEmployeeFilters, { useAuthData } from "../state-management/store";
 import _ from 'lodash'
-import { useEmployeesPaginationStore } from "../state-management/store";
+import { useAuthData, useEmployeeFilters, useEmployeesPaginationStore } from "../state-management/store";
 import employeesConfig from "../../config/employees-config.json";
 import { HiChevronLeft, HiChevronRight } from "react-icons/hi";
 

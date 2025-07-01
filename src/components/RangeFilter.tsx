@@ -4,7 +4,7 @@ import { FaEdit, FaCheck } from "react-icons/fa";
 import { useForm } from "react-hook-form";
 import { MdClose } from "react-icons/md";
 
-import useEmployeeFilters from "../state-management/store";
+import { useEmployeeFilters } from "../state-management/store";
 interface Props {
     title: string;
     min: number;

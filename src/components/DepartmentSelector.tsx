@@ -3,7 +3,8 @@ import { FC, useState } from 'react'
 import { FaChevronDown, FaChevronUp } from 'react-icons/fa'
 import MotionComponent from './MotionComponent';
 import {departments} from '../../config/employees-config.json'
-import useEmployeeFilters from '../state-management/store';
+import { useEmployeeFilters } from '../state-management/store';
+
 
 const duration=0.7;
 const DepartmentSelector: FC = () => {
