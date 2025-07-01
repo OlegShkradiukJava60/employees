@@ -5,7 +5,7 @@ import {
   Stack,
 } from "@chakra-ui/react";
 import { HiChevronLeft, HiChevronRight } from "react-icons/hi";
-import { useEmployeesPaginationStore } from "../state-management/EmployeesPaginationStore";
+import { useEmployeesPaginationStore } from "../state-management/store";
 import employeesConfig from "../../config/employees-config.json";
 
 const EmployeesPaginator = () => {

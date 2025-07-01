@@ -47,5 +47,24 @@ export const useAuthData = create<AuthData>(set => ({
     logout: () => set({
         userData: null
     })
-}))
+
+    
+})
+) 
+
+interface EmployeesPaginationState {
+  count: number;    
+  page: number; 
+  setCount: (count: number) => void;
+  setPage: (page: number) => void;
+}
+
+export const useEmployeesPaginationStore = create<EmployeesPaginationState>((set) => ({
+  count: 0,
+  page: 0,
+  setCount: (count) => set({ count }),
+  setPage: (page) => set({ page }),
+}));
+
+
 export default useEmployeeFilters

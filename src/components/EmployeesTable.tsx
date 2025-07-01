@@ -9,7 +9,7 @@ import useEmployeesMutation from "../hooks/useEmployeesMutation";
 import EditField from "./EditField";
 import useEmployeeFilters, { useAuthData } from "../state-management/store";
 import _ from 'lodash'
-import { useEmployeesPaginationStore } from "../state-management/EmployeesPaginationStore";
+import { useEmployeesPaginationStore } from "../state-management/store";
 import employeesConfig from "../../config/employees-config.json";
 import { HiChevronLeft, HiChevronRight } from "react-icons/hi";
 
@@ -53,7 +53,7 @@ const EmployeesTable: FC<Props> = ({ deleteFn, updateFn }) => {
 
 
 
-  const { page, setPage, setCount } = useEmployeesPaginationStore();
+  const { page, setCount } = useEmployeesPaginationStore();
   const pageSize = employeesConfig.pageSize || 6;
 
   useEffect(() => {
@@ -65,7 +65,6 @@ const EmployeesTable: FC<Props> = ({ deleteFn, updateFn }) => {
   const startRange = (page - 1) * pageSize;
   const endRange = startRange + pageSize;
   const paginatedEmployees = employees?.slice(startRange, endRange);
-  const totalItems = employees?.length || 0;
 
 
 
@@ -127,8 +126,6 @@ const EmployeesTable: FC<Props> = ({ deleteFn, updateFn }) => {
               </Table.Body>
             </Table.Root>
           </Table.ScrollArea>
-
-
         </Stack>
       </>
     </>
