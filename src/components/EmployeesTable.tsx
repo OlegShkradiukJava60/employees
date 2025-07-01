@@ -12,7 +12,6 @@ import _ from 'lodash'
 import { useEmployeesPaginationStore } from "../state-management/EmployeesPaginationStore";
 import employeesConfig from "../../config/employees-config.json";
 import { HiChevronLeft, HiChevronRight } from "react-icons/hi";
-import { EmployeesPaginationState } from '../state-management/EmployeesPaginationStore';
 
 interface Props {
   deleteFn: MutationFunction,
@@ -46,15 +45,16 @@ const EmployeesTable: FC<Props> = ({ deleteFn, updateFn }) => {
   });
   if (error) {
     throw error;
-  }                        
+  }
 
   const mutationDel = useEmployeesMutation(deleteFn);
   const mutationUpdate = useEmployeesMutation(updateFn);
   const bg = useColorModeValue("red.500", "red.200");
 
-    const { page, setPage, setCount } = useEmployeesPaginationStore();
-  const pageSize = employeesConfig.pageSize || 6;
 
+
+  const { page, setPage, setCount } = useEmployeesPaginationStore();
+  const pageSize = employeesConfig.pageSize || 6;
 
   useEffect(() => {
     if (employees) {
@@ -62,11 +62,11 @@ const EmployeesTable: FC<Props> = ({ deleteFn, updateFn }) => {
     }
   }, [employees, setCount]);
 
-
   const startRange = (page - 1) * pageSize;
   const endRange = startRange + pageSize;
   const paginatedEmployees = employees?.slice(startRange, endRange);
   const totalItems = employees?.length || 0;
+
 
 
   return (
@@ -128,6 +128,7 @@ const EmployeesTable: FC<Props> = ({ deleteFn, updateFn }) => {
             </Table.Root>
           </Table.ScrollArea>
 
+
           {totalItems > pageSize && (
             <Pagination.Root
               count={totalItems}
@@ -162,6 +163,7 @@ const EmployeesTable: FC<Props> = ({ deleteFn, updateFn }) => {
               </ButtonGroup>
             </Pagination.Root>
           )}
+
         </Stack>
       </>
     </>

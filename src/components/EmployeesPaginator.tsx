@@ -9,15 +9,14 @@ import { useEmployeesPaginationStore } from "../state-management/EmployeesPagina
 import employeesConfig from "../../config/employees-config.json";
 
 const EmployeesPaginator = () => {
-  const { page, setPage, count } = useEmployeesPaginationStore();
+  const { page, setPage, count} = useEmployeesPaginationStore();
   const pageSize = employeesConfig.pageSize || 6;
-
-  const totalPages = Math.ceil(count / pageSize);
+;
 
   return (
     <Stack gap="4" mt={4} alignItems="center">
       <Pagination.Root
-        count={totalPages}
+        count={count}
         pageSize={pageSize}
         page={page}
         onPageChange={(e) => setPage(e.page)}
