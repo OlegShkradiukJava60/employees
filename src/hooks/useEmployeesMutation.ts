@@ -6,5 +6,9 @@ export default function useEmployeesMutation(mutationFn: MutationFunction) {
         mutationFn,
         onSuccess: () => queryClient.invalidateQueries({queryKey: ["employees"]})
     })
+    if(res.error) {
+        throw res.error
+        
+    }
     return res;
 }

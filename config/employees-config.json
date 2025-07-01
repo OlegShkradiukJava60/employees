@@ -3,5 +3,6 @@
     "minSalary": 5000,
     "maxSalary": 50000,
     "minAge": 20,
-    "maxAge": 72
+    "maxAge": 72,
+    "pageSize": 6
 }

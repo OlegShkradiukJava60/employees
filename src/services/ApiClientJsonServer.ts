@@ -8,23 +8,19 @@ let axiosIstance = axios.create({
 });
 class ApiClientJsonServer implements ApiClient {
   setToken(token: string): void {
-    axiosIstance = axios.create({
-      baseURL: BASE_URL,
-      headers: {
-        Authorization: "Bearer " + token
-      }
-    })
+      axiosIstance = axios.create({
+           baseURL: BASE_URL,
+           headers: {
+            Authorization: "Bearer " + token
+           } 
+      })
   }
   async getEmployee(id: string): Promise<Employee> {
     const res = await axiosIstance.get<Employee>(`/${id}`);
     return res.data;
   }
   async addEmployee(empl: Employee): Promise<Employee> {
-    const employeeWithUserId = {
-      ...empl,
-      userId: "ADMIN",
-    };
-    const res = await axiosIstance.post<Employee>("/", employeeWithUserId);
+    const res = await axiosIstance.post<Employee>("/", {...empl, userId:"ADMIN"});
     return res.data;
   }
   async deleteEmployee(id: string): Promise<Employee> {
@@ -41,20 +37,20 @@ class ApiClientJsonServer implements ApiClient {
   async getAll(searchObject?: SearchObject): Promise<Employee[]> {
     let res;
     let url = "/";
-    let salaryFrom, salaryTo, ageFrom, ageTo;
+    let  salaryFrom, salaryTo, ageFrom, ageTo;
     if (searchObject && searchObject.department) {
       url = `?department=${searchObject.department}`;
     }
-    searchObject && ({ salaryFrom, salaryTo, ageFrom, ageTo } = searchObject)
+    searchObject && ({ salaryFrom, salaryTo, ageFrom, ageTo} = searchObject)
     salaryFrom = salaryFrom ?? 0;
     salaryTo = salaryTo ?? Number.MAX_SAFE_INTEGER;
     ageFrom = ageFrom ?? 0;
     ageTo = ageTo ?? Number.MAX_SAFE_INTEGER;
     res = (await axiosIstance.get<Employee[]>(url)).data;
     res = res.filter(e => {
-      const age = getAge(e.birthDate);
-      const salary = e.salary;
-      return age >= ageFrom && age <= ageTo && salary >= salaryFrom && salary <= salaryTo
+        const age = getAge(e.birthDate);
+        const salary = e.salary;
+        return age >= ageFrom && age <= ageTo && salary >= salaryFrom && salary <= salaryTo
     })
     return res
   }
