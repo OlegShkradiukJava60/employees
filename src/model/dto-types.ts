@@ -11,5 +11,5 @@ export interface SearchObject {
     salaryFrom?: number;
     salaryTo?: number;
     ageFrom?: number;
-   ageTo?: number;
+    ageTo?: number;
 }

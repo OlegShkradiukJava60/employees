@@ -1,15 +1,10 @@
-import { Employee } from '../model/dto-types'
-import { AxiosError } from 'axios'
-import { useQuery } from '@tanstack/react-query'
+
 import apiClient from '../services/ApiClientJsonServer'
 import Statistics from '../components/Statistics'
+import useEmployeesQuery from '../hooks/useEmployeesQuery'
 
 const SalaryStatisticsPage = () => {
-  const {data: employees} = useQuery<Employee[], AxiosError>({
-    queryKey: ["employees"],
-    queryFn: () => apiClient.getAll(),
-    staleTime: 3600_000
-  })
+ const {data: employees} = useEmployeesQuery(["employees"], () => apiClient.getAll())
 
   return (
     <Statistics numbers={employees?.map(e => e.salary) || []} interval={5000} label={'Salary'} ></Statistics>

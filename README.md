@@ -1,5 +1,21 @@
-# HW #49 solution
-## Replace Spinner component being rendered for waiting data from server with the table skeleton (see examples from https://chakra-ui.com/docs/components/skeleton)
-## Introducing confirmation dialog of deleting an employee object (see example from https://chakra-ui.com/docs/components/dialog#alert-dialog)
-## Remove dependency (import) on ApiClientJsonServer from EmployeesTable component
-### Consider adding new property queryFn along with updateFn and deleteFn being passed to the EmployeesTable component
+
+# Employee Dashboard
+
+An interactive web application for managing and visualizing employee data. You can:
+
+- **View** a list of employees
+- **Add** new employees
+- **Delete** existing employees
+- **Visualize** employee statistics with charts
+
+Built with:
+
+- **Vite** – lightning‑fast build tool  
+- **TypeScript** – type safety and modern JS features  
+- **Chakra UI** – accessible, themeable React components  
+
+## Features
+
+- **Employee List**: Browse all employees in a responsive table  
+- **CRUD Operations**: Create, read, and delete employee records  
+- **Charts & Graphs**: Dynamic visualizations (e.g. age distribution, salary breakdown)  
